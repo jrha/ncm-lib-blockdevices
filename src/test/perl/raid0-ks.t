@@ -1,4 +1,4 @@
-#!/usr/bin/perl 
+#!/usr/bin/perl
 # -*- mode: cperl -*-
 # ${license-info}
 # ${developer-info}
@@ -10,7 +10,7 @@ use warnings;
 
 use EDG::WP4::CCM::Element qw(escape);
 use Test::More;
-use Test::Quattor qw(raid);
+use Test::Quattor qw(raid0);
 use helper;
 
 use Test::Quattor::RegexpTest;
@@ -23,7 +23,7 @@ set_disks({sdb => 1});
 mkdir('target/test') if ! -d 'target/test';
 
 my $regexpdir= getcwd()."/src/test/resources/regexps";
-my $cfg = get_config_for_profile('raid');
+my $cfg = get_config_for_profile('raid0');
 my $md = NCM::MD->new ("/system/blockdevices/md/md0", $cfg);
 is (ref ($md), "NCM::MD", "MD correctly instantiated");
 
@@ -36,7 +36,7 @@ $md->create_ks;
 diag "$fhmd";
 
 Test::Quattor::RegexpTest->new(
-    regexp => "$regexpdir/raid_create_ks_1",
+    regexp => "$regexpdir/raid0_create_ks_1",
     text => "$fhmd"
 )->test();
 
@@ -50,7 +50,7 @@ $md->create_ks;
 diag "$fhmd2";
 
 Test::Quattor::RegexpTest->new(
-    regexp => "$regexpdir/raid_create_ks_2",
+    regexp => "$regexpdir/raid0_create_ks_2",
     text => "$fhmd2"
 )->test();
 

@@ -1,4 +1,4 @@
-#!/usr/bin/perl 
+#!/usr/bin/perl
 # -*- mode: cperl -*-
 # ${license-info}
 # ${developer-info}
@@ -9,18 +9,18 @@ use strict;
 use warnings;
 
 use Test::More;
-use Test::Quattor qw(raid);
+use Test::Quattor qw(raid0);
 use helper;
 
 use NCM::MD;
 
 set_disks({sdb => 1});
 
-my $cfg = get_config_for_profile('raid');
+my $cfg = get_config_for_profile('raid0');
 my $md = NCM::MD->new ("/system/blockdevices/md/md0", $cfg);
 is (ref ($md), "NCM::MD", "MD correctly instantiated");
 
-# test devexists 
+# test devexists
 set_output('mdadm_query_ok');
 ok($md->devexists, 'Device exists');
 set_output('mdadm_query_nok');

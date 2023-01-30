@@ -1,4 +1,3 @@
-object template raid;
+object template raid0;
 
 include 'blockdevices';
-

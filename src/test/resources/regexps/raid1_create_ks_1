@@ -1,0 +1,14 @@
+raid_create_ks_1
+---
+---
+^export PATH=/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin$
+^if  ! grep -q md1 /proc/mdstat$
+^then$
+^parted -s -- /dev/sda set 2 raid on$
+^sed -i '\\:/dev/sda2\$:d' /tmp/created_partitions$
+^parted -s -- /dev/sdb set 2 raid on$
+^sed -i '\\:/dev/sdb2\$:d' /tmp/created_partitions$
+^sleep 5;$
+^mdadm --create --run /dev/md1 --level=1 --metadata=0.90 --raid-devices=2 /dev/sda2 /dev/sdb2$
+^echo /dev/md1 >> /tmp/created_partitions$
+^fi$
