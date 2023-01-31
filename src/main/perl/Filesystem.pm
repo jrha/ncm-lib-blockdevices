@@ -470,7 +470,7 @@ sub format_if_needed
     if (! $self->{block_device}->is_valid_device) {
         $self->error("Filesystem mountpoint $self->{mountpoint}",
                      " not valid blockdev ", $self->{block_device}->devpath);
-		$? = 1;
+        $? = 1;
         return 1;
     };
 
