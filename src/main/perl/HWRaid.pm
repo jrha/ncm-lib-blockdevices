@@ -27,25 +27,25 @@ use CAF::Process;
 use LC::Exception;
 
 
-use constant VENDOR	=> 0;
-use constant CONTROLLER	=> 1;
-use constant UNIT	=> 2;
-use constant RAIDLEVEL	=> 3;
-use constant STRIPESIZE	=> 4;
-use constant RAIDSIZE	=> 5;
-use constant DISKLIST	=> 6;
-use constant OSDISK	=> 7;
-use constant RAIDSTATUS	=> 8;
-use constant EMPTY	=> '-';
-use constant HWRAIDINFO	=> qw (/usr/bin/hwraidman info);
+use constant VENDOR        => 0;
+use constant CONTROLLER    => 1;
+use constant UNIT          => 2;
+use constant RAIDLEVEL     => 3;
+use constant STRIPESIZE    => 4;
+use constant RAIDSIZE      => 5;
+use constant DISKLIST      => 6;
+use constant OSDISK        => 7;
+use constant RAIDSTATUS    => 8;
+use constant EMPTY         => '-';
+use constant HWRAIDINFO    => qw (/usr/bin/hwraidman info);
 use constant HWRAIDDESTROY => qw (/usr/bin/hwraidman destroy);
 use constant HWRAIDCREATE  => qw (/usr/bin/hwraidman create);
-use constant HWPATH	=> "/hardware/cards/raid/";
-use constant VENDORSTRING => "/vendor";
-use constant RAIDPATH	=> "/system/blockdevices/hwraid/";
-use constant NODISK	=> EMPTY;
-use constant DISKSEP	=> ':';
-use constant JOINER	=> ',';
+use constant HWPATH        => "/hardware/cards/raid/";
+use constant VENDORSTRING  => "/vendor";
+use constant RAIDPATH      => "/system/blockdevices/hwraid/";
+use constant NODISK        => EMPTY;
+use constant DISKSEP       => ':';
+use constant JOINER        => ',';
 
 use parent qw(NCM::Blockdevices);
 my $ec = LC::Exception::Context->new->will_store_all;
@@ -311,4 +311,3 @@ sub create_if_needed
 
 
 1;
-
