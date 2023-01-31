@@ -57,17 +57,17 @@ use parent qw(NCM::Blockdevices Exporter);
 our @EXPORT_OK = qw (partition_sort);
 
 use constant {
-    PARTED		=> "/sbin/parted",
-    CREATE		=> "mkpart",
-    DELETE		=> "rm",
-    #	TYPE		=> "primary"
+    PARTED => "/sbin/parted",
+    CREATE => "mkpart",
+    DELETE => "rm",
+    # TYPE   => "primary"
 };
 
 # Regular expression for checking where the partition begins. The format of a Parted line is:
 # <minor> <begin> <end> <size (SL5 only)> <partition type (DOS-labels only)>
-use constant BEGIN_RE	=> '^\s*(\d+)\w*\s+(\d+\.?\d+)\w*\s+(\d+\.?\d+)\w*';
-use constant BEGIN_TAIL_RE=> '\s+(?:\d+\.?\d+\w*)?\s*(primary|extended|logical)';
-use constant MSDOS	=> 'msdos';
+use constant BEGIN_RE      => '^\s*(\d+)\w*\s+(\d+\.?\d+)\w*\s+(\d+\.?\d+)\w*';
+use constant BEGIN_TAIL_RE => '\s+(?:\d+\.?\d+\w*)?\s*(primary|extended|logical)';
+use constant MSDOS         => 'msdos';
 
 # On recent kernels, partitions tend to appear slightly later than
 # when they are expected. We'll have to wait a little for this to
@@ -75,11 +75,11 @@ use constant MSDOS	=> 'msdos';
 use constant SLEEPTIME => 4;
 
 use constant PARTEDEXTRA => qw (u MiB);
-use constant PARTEDARGS	=> qw (-s --);
+use constant PARTEDARGS  => qw (-s --);
 
-use constant BASEPATH	=> "/system/blockdevices/";
-use constant DISK	=> "physical_devs/";
-use constant PARTEDP	=> 'print';
+use constant BASEPATH => "/system/blockdevices/";
+use constant DISK     => "physical_devs/";
+use constant PARTEDP  => 'print';
 
 # Returns 1 if $a must be created before $b, -1 if $b must be created
 # before $a, 0 if it doesn't matter.
@@ -146,8 +146,8 @@ sub new_from_system
     }
 
     my $self = {
-        devname	=> $devname,
-        holding_dev	=> NCM::Disk->new_from_system ($disk, $cfg, %opts),
+        devname    => $devname,
+        holding_dev    => NCM::Disk->new_from_system ($disk, $cfg, %opts),
         log => $log,
     };
     return bless ($self, $class);
