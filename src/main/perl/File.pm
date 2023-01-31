@@ -17,10 +17,10 @@ use CAF::Process;
 use NCM::Blockdevices qw ($reporter);
 use parent qw(NCM::Blockdevices);
 
-use constant BASEPATH	=> "/system/blockdevices/";
-use constant DD		=> qw (/bin/dd if=/dev/zero bs=1M);
-use constant SIZE	=> 'count=';
-use constant OUT	=> 'of=';
+use constant BASEPATH => "/system/blockdevices/";
+use constant DD       => qw (/bin/dd if=/dev/zero bs=1M);
+use constant SIZE     => 'count=';
+use constant OUT      => 'of=';
 
 
 sub _initialize
@@ -55,22 +55,22 @@ Returns 0 on success.
 
 sub create
 {
-	my $self = shift;
+    my $self = shift;
 
     return 1 if (! $self->is_valid_device);
 
-	# Don't overwrite existing files. Data loss and symlink
-	# attacks!
-	return 0 if (-e $self->devpath);
+    # Don't overwrite existing files. Data loss and symlink
+    # attacks!
+    return 0 if (-e $self->devpath);
 
-	CAF::Process->new([DD, SIZE.$self->{size}, OUT.$self->devpath], log => $self)->execute();
-	if ($?) {
-		$self->error ("Couldn't create file: ", $self->devpath);
-	} else {
-		chmod ($self->{permissions}, $self->devpath);
-		chown ($self->{owner}, $self->{group}, $self->devpath);
-	}
-	return $?;
+    CAF::Process->new([DD, SIZE.$self->{size}, OUT.$self->devpath], log => $self)->execute();
+    if ($?) {
+        $self->error ("Couldn't create file: ", $self->devpath);
+    } else {
+        chmod ($self->{permissions}, $self->devpath);
+        chown ($self->{owner}, $self->{group}, $self->devpath);
+    }
+    return $?;
 }
 
 =pod
@@ -85,11 +85,11 @@ Returns 0 on success.
 
 sub remove
 {
-	my $self = shift;
+    my $self = shift;
 
     return 1 if (! $self->is_valid_device);
 
-	return unlink ($self->devpath);
+    return unlink ($self->devpath);
 }
 
 =pod
@@ -125,8 +125,8 @@ Returns the absolute path to the file.
 
 sub devpath
 {
-	my $self = shift;
-	return $self->{devname};
+    my $self = shift;
+    return $self->{devname};
 }
 
 =pod
@@ -137,13 +137,13 @@ sub devpath
 
 sub new_from_system
 {
-	my ($class, $dev, $cfg, %opts) = @_;
+    my ($class, $dev, $cfg, %opts) = @_;
 
-	my $self = {
+    my $self = {
         devname => $dev,
         log => ($opts{log} || $reporter),
     };
-	return bless ($self, $class);
+    return bless ($self, $class);
 }
 
 
@@ -160,7 +160,7 @@ always false.
 
 sub should_print_ks
 {
-	return 0;
+    return 0;
 }
 
 =head2 should_create_ks
@@ -172,7 +172,7 @@ always false.
 
 sub should_create_ks
 {
-	return 0;
+    return 0;
 }
 
 1;
