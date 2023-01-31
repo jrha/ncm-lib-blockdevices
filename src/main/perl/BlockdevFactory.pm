@@ -12,7 +12,7 @@ use CAF::Process;
 use Readonly;
 
 Readonly my $BASEPATH => "/system/blockdevices";
-Readonly my @PARTED	=> qw (/sbin/parted -s --);
+Readonly my @PARTED => qw (/sbin/parted -s --);
 Readonly my @PARTEDEXTRA => qw (u MiB);
 Readonly my $PARTEDPRINT => 'print';
 # if all is put in qw(), perl warns with 'Possible attempt to separate words with commas'
