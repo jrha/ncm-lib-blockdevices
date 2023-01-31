@@ -40,24 +40,24 @@ my $ec = LC::Exception::Context->new->will_store_all;
 
 use parent qw(NCM::Blockdevices);
 
-use constant DD		=> "/bin/dd";
-use constant CREATE	=> "mklabel";
-use constant NOPART	=> "none";
-use constant RCLOCAL	=> "/etc/rc.local";
+use constant DD          => "/bin/dd";
+use constant CREATE      => "mklabel";
+use constant NOPART      => "none";
+use constant RCLOCAL     => "/etc/rc.local";
 
-use constant HWPATH	=> "/hardware/harddisks";
-use constant HOSTNAME	=> "/system/network/hostname";
-use constant DOMAINNAME	=> "/system/network/domainname";
-use constant IGNOREDISK => "/system/aii/osinstall/ks/ignoredisk";
+use constant HWPATH      => "/hardware/harddisks";
+use constant HOSTNAME    => "/system/network/hostname";
+use constant DOMAINNAME  => "/system/network/domainname";
+use constant IGNOREDISK  => "/system/aii/osinstall/ks/ignoredisk";
 
-use constant FILES	=> qw (file -s);
-use constant SLEEPTIME	=> 2;
-use constant RAIDSLEEP	=> 10;
-use constant PARTED	=> qw (/sbin/parted -s --);
+use constant FILES       => qw (file -s);
+use constant SLEEPTIME   => 2;
+use constant RAIDSLEEP   => 10;
+use constant PARTED      => qw (/sbin/parted -s --);
 use constant PARTEDEXTRA => qw (u MiB);
-use constant PARTEDP	=> 'print';
-use constant SETRA	=> qw (/sbin/blockdev --setra);
-use constant DDARGS	=> qw (if=/dev/zero count=1000);
+use constant PARTEDP     => 'print';
+use constant SETRA       => qw (/sbin/blockdev --setra);
+use constant DDARGS      => qw (if=/dev/zero count=1000);
 
 =pod
 
