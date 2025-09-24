@@ -89,7 +89,6 @@ ok(! command_history_ok(['/bin/dd']), "No dd with invalid device during remove")
 
 # test some ks functions, those just print to default FH
 my $fhks = CAF::FileWriter->new("target/test/ksdisksize");
-my $origfh = select($fhks);
 
 @int = $o->valid_size_interval();
 $o->ks_pre_is_valid_size;
@@ -99,21 +98,16 @@ like("$fhks", qr{^if\s+\[\s+\$\?\s+-ne\s+0\s+\]}m, "Found valid condition");
 like("$fhks", qr{exit\s+1}m, "Found valid exit");
 
 my $fhks2 = CAF::FileWriter->new("target/test/ksdisksize2");
-select($fhks2);
 $o->ks_pre_is_valid_size;
 like("$fhks2", qr{^$command$}m, "Found valid min/max with ks_is_valid_device");
 like("$fhks2", qr{^if\s+\[\s+\$\?\s+-ne\s+0\s+\]}m, "Found valid condition  with ks_is_valid_device");
 like("$fhks2", qr{exit\s+1}m, "Found valid exit with ks_is_valid_device");
 
 my $fhks3 = CAF::FileWriter->new("target/test/ksdisksize3");
-select($fhks3);
 $o->ks_is_valid_device;
 like("$fhks2", qr{^$command$}m, "Found valid min/max with ks_is_valid_device");
 like("$fhks2", qr{^if\s+\[\s+\$\?\s+-ne\s+0\s+\]}m, "Found valid condition  with ks_is_valid_device");
 like("$fhks2", qr{exit\s+1}m, "Found valid exit with ks_is_valid_device");
-
-# restore FH for DESTROY
-select($origfh);
 
 done_testing();
 

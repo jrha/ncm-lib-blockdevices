@@ -30,8 +30,6 @@ is (ref ($md), "NCM::MD", "MD correctly instantiated");
 # test some ks functions, those just print to default FH
 my $fhmd = CAF::FileWriter->new("target/test/ksfs");
 
-my $origfh = select($fhmd);
-
 $md->create_ks;
 diag "$fhmd";
 
@@ -45,7 +43,6 @@ is (ref ($md), "NCM::MD", "MD correctly instantiated");
 
 # test some ks functions, those just print to default FH
 my $fhmd2 = CAF::FileWriter->new("target/test/ksfs2");
-select($fhmd2);
 $md->create_ks;
 diag "$fhmd2";
 
@@ -53,8 +50,5 @@ Test::Quattor::RegexpTest->new(
     regexp => "$regexpdir/raid_create_ks_2",
     text => "$fhmd2"
 )->test();
-
-# restore FH for DESTROY
-select($origfh);
 
 done_testing();
